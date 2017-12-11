@@ -1,0 +1,14 @@
+server:
+  port: 5555
+  application:
+    name: apigateway
+zuul:
+  routes:
+    api-a-url:
+      path: /a/**
+      serviceId: helloservice
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:8001/eureka,http://127.0.0.1:8002/eureka
+from: api-prod

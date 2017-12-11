@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: config-server
+  profiles:
+    active: native
+  cloud:
+    config:
+      enabled: true
+server:
+  port: 7001
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:8001/eureka,http://127.0.0.1:8002/eureka
+management:
+  security:
+    enabled: false

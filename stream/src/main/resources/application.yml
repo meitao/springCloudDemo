@@ -1,0 +1,33 @@
+server:
+  port: 9002
+spring:
+  application:
+    name: stream-server
+  cloud:
+     instance-count: 1
+     instance-index: 0
+     kafka:
+        binder:
+          brokers: localhost:9092
+          zk-nodes: localhost:2182
+          auto-add-partitions: true
+          auto-create-topics: true
+          min-partition-count: 1
+     stream:
+        bindings:
+          input:
+            destination: event-demo
+            group: s1
+            consumer:
+              autoCommitOffset: false
+              concurrency: 1
+              partitioned: false
+          output:
+            destination: event-demo
+            content-type: text/plain
+            producer:
+              partitionCount: 1
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:8001/eureka,http://127.0.0.1:8002/eureka
